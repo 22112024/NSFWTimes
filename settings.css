@@ -1,0 +1,354 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Ubuntu", serif;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.flex-visible {
+  display: flex;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.block-visible {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.inline-visible {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f9fafb;
+  color: #111827;
+  height: 100%;
+}
+
+.settings_container {
+  max-width: auto;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Header */
+.settings_top_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: 80px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #111827;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: none;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+}
+
+.nav_back_button {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.nav_back_button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: #111827;
+  transition: filter 0.2s ease;
+}
+
+.nav_back_button:hover {
+  filter: invert(83%) sepia(37%) saturate(1116%) hue-rotate(187deg)
+    brightness(94%) contrast(92%);
+}
+
+.nav_placeholder {
+  width: 25px;
+  height: 25px;
+}
+
+/* Settings sections */
+.settings_blocks {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 90px;
+}
+
+.settings_section {
+  background: #fff;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.settings_section_inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.settings_section_inner .settings_section_title {
+  display: inline-block;
+  background: #fff;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.settings_menu {
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  padding: 18px;
+  background: rgb(252, 252, 255);
+  z-index: 999;
+}
+
+.settings_menu_description {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.settings_menu_description a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.settings_menu_description img {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.settings_menu.block-visible {
+  text-align: center;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.text_size_control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+#fontSizeSlider {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 6px;
+  margin-bottom: 10px;
+  background: #d0d0d0;
+  border-radius: 5px;
+  outline: none;
+  accent-color: transparent;
+}
+
+/* ===== Chrome, Edge, Safari ===== */
+
+/* Трек (дорожка) */
+#fontSizeSlider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: linear-gradient(90deg, #a1bef1, #e06eb5);
+  border-radius: 5px;
+}
+
+/* Ползунок (бегунок) */
+#fontSizeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #a1bef1;
+  margin-top: -7px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#fontSizeSlider::-webkit-slider-thumb:hover {
+  background: #e06eb5;
+}
+
+/* ===== Firefox ===== */
+
+#fontSizeSlider::-moz-range-track {
+  height: 6px;
+  background: linear-gradient(90deg, #a1bef1, #e06eb5);
+  border-radius: 5px;
+}
+
+#fontSizeSlider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #a1bef1;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#fontSizeSlider::-moz-range-thumb:hover {
+  background: #e06eb5;
+}
+
+#fontSizeSlider::-ms-track {
+  height: 6px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+#fontSizeSlider::-ms-fill-lower {
+  background: #a1bef1;
+  border-radius: 5px;
+}
+
+#fontSizeSlider::-ms-fill-upper {
+  background: #e06eb5;
+  border-radius: 5px;
+}
+
+#fontSizeSlider::-ms-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #a1bef1;
+  cursor: pointer;
+}
+
+/* Bottom Navigation */
+
+.bottom_nav {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(0);
+  background: #fff;
+  padding: 10px 20px 15px 20px;
+  margin-top: 10px;
+  height: 80px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.nav_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  background: none;
+  cursor: pointer;
+}
+
+.nav_item img {
+  display: block;
+}
+
+.nav_item_home img {
+  width: 23px;
+  height: 23px;
+  filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
+    hue-rotate(0deg);
+  transition: filter 0.2s ease;
+}
+
+.nav_item_favorites img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
+    hue-rotate(0deg);
+  transition: filter 0.2s ease;
+}
+
+.nav_item_trends img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
+    hue-rotate(0deg);
+  transition: filter 0.2s ease;
+}
+
+.nav_item_settings img {
+  width: 23px;
+  height: 23px;
+  filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
+    hue-rotate(0deg);
+  transition: filter 0.2s ease;
+}
+
+.nav_item.active img {
+  filter: invert(83%) sepia(17%) saturate(1116%) hue-rotate(187deg)
+    brightness(94%) contrast(92%);
+}
+
+.nav_item span {
+  font-size: 12.9px;
+  font-weight: 500;
+  line-height: 1px;
+  color: #a9a9a9;
+}
+
+.nav_item.active span {
+  color: #a1bef1;
+}
+
+.bottom_nav .nav_item,
+.bottom_nav .nav_item span,
+.bottom_nav .nav_item.active span {
+  text-decoration: none;
+}
