@@ -4,10 +4,24 @@
   padding: 0;
 }
 
-h1,
-h2,
+h1 {
+  font-family: "Ubuntu", serif;
+  font-weight: 500;
+  font-size: 33px;
+}
+
+h2 {
+  font-family: "Ubuntu", serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
 h3 {
   font-family: "Ubuntu", serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 body {
@@ -159,8 +173,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   padding: 0;
   padding-bottom: 90px;
 }
@@ -298,7 +312,7 @@ body {
 }
 
 .category:nth-last-child(1) {
-  border: 1px solid #a1bef1;
+  border: 1px solid #9bb9ed;
   background: #fff;
   color: #a1bef1;
 }
@@ -376,7 +390,7 @@ body {
 }
 
 .share_title {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   margin-bottom: 15px;
   text-align: center;
@@ -498,7 +512,7 @@ body {
   background: #e0e0e0;
 }
 
-/* Bottom Navigation */
+/* Bottom navigation */
 
 .bottom_nav {
   display: flex;
@@ -542,16 +556,18 @@ body {
 }
 
 .nav_item_favorites img {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 1px;
   filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
     hue-rotate(0deg);
   transition: filter 0.2s ease;
 }
 
 .nav_item_trends img {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
+  margin-bottom: 1px;
   filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
     hue-rotate(0deg);
   transition: filter 0.2s ease;
