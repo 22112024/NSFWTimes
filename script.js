@@ -68,10 +68,33 @@ articles.forEach((article) => {
       const isClickInside =
         shareMenu.contains(event.target) || shareButton.contains(event.target);
       if (!isClickInside && shareMenu.classList.contains("block-visible")) {
-        shareMenu.classList.remove("block-visible");
-        shareMenu.classList.add("hidden");
+        smoothHide(shareMenu);
       }
     });
+
+    let startY = 0;
+
+    shareMenu.addEventListener("touchstart", (event) => {
+      startY = event.touches[0].clientY;
+    });
+
+    shareMenu.addEventListener("touchend", (event) => {
+      const endY = event.changedTouches[0].clientY;
+      const deltaY = endY - startY;
+      if (deltaY > 40 && shareMenu.classList.contains("block-visible")) {
+        smoothHide(shareMenu);
+      }
+    });
+
+    function smoothHide(menu) {
+      menu.classList.remove("block-visible");
+      menu.classList.add("block-hiding");
+
+      setTimeout(() => {
+        menu.classList.remove("block-hiding");
+        menu.classList.add("hidden");
+      }, 400); // должен совпадать с transition в CSS
+    }
 
     if (shareLinkBtn) {
       shareLinkBtn.addEventListener("click", (event) => {
@@ -113,20 +136,6 @@ articles.forEach((article) => {
         }
       });
     }
-
-    let startY = 0;
-    shareMenu.addEventListener("touchstart", (event) => {
-      startY = event.touches[0].clientY;
-    });
-
-    shareMenu.addEventListener("touchend", (event) => {
-      const endY = event.changedTouches[0].clientY;
-      const deltaY = endY - startY;
-      if (deltaY > 40 && shareMenu.classList.contains("block-visible")) {
-        shareMenu.classList.remove("block-visible");
-        shareMenu.classList.add("hidden");
-      }
-    });
   }
 });
 
