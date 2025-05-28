@@ -55,7 +55,7 @@ articles.forEach((article) => {
   const shareButton = article.querySelector(".icon_share");
   const shareMenu = article.querySelector(".share_menu");
   const shareLinkBtn = article.querySelector(".copy_link");
-  const nativeShareBtn = article.querySelector(".share_link a");
+  const nativeShareBtn = article.querySelector(".share_link");
 
   if (shareButton && shareMenu) {
     shareButton.addEventListener("click", (event) => {
@@ -102,7 +102,7 @@ articles.forEach((article) => {
           navigator
             .share({
               title: title,
-              text: "Смотри, какая статья!",
+              text: "Прочитай статью с 'клубничкой'!",
               url: url,
             })
             .catch((error) => {
