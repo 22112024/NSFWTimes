@@ -24,6 +24,38 @@ h3 {
   line-height: 1.4;
 }
 
+.hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.block-hiding {
+  transform: translateX(-50%) translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.flex-visible {
+  display: flex;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.block-visible {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.inline-visible {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background: #f9fafb;
@@ -326,6 +358,13 @@ body {
   opacity: 1;
   pointer-events: auto;
   animation: slideBounceUp 0.5s ease;
+}
+
+.share_menu.block-hiding {
+  transform: translateX(-50%) translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
 @keyframes slideBounceUp {
