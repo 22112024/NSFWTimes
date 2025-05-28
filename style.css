@@ -156,6 +156,7 @@ body {
   margin-bottom: 10px;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  color: #111827;
 }
 
 .filter_tabs::-webkit-scrollbar {
@@ -177,10 +178,6 @@ body {
 }
 
 .tab:hover {
-  background: rgba(170, 169, 173, 0.1);
-}
-
-.tab:active {
   background: rgba(170, 169, 173, 0.1);
 }
 
@@ -256,7 +253,7 @@ body {
 }
 
 .category:nth-last-child(1) {
-  border: 1px solid #a1bef1;
+  border: 1px solid #9bb9ed;
   background: #fff;
   color: #a1bef1;
 }
