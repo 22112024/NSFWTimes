@@ -1,239 +1,733 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Porno News</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="article.css" />
-  </head>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  <body>
-    <div class="article_container">
-      <!-- Header -->
-      <header class="article_top_nav">
-        <div class="nav_back_button">
-          <a href="index.html"
-            ><img src="img/arrow-left.svg" alt="Favorites"
-          /></a>
-        </div>
-        <div class="article_nav_title">
-          <span class="nav_title">NEWS</span>
-        </div>
-        <div class="nav_placeholder"></div>
-      </header>
+h1 {
+  font-family: "Ubuntu", serif;
+  font-weight: 500;
+  font-size: 30px;
+}
 
-      <!-- News Feed -->
-      <main class="article_news_feed">
-        <!-- Main Card -->
-        <article class="article_news_card">
-          <div class="article_card_content">
-            <h2 class="article_card_title">
-              <a href="#">
-                В США учительница уволилась после того, как стало известно о ее аккаунте на OnlyFans
-              </a>
-            </h2>
-            <div class="article_card_category">
-              <span class="category">TRENDS</span>
-              <span class="category">ONLYFANS</span>
-            </div>
-            <div class="article_card_image">
-              <img src="img/mainphoto.jpg" alt="Photo" />
-            </div>
-            <div class="article_card_description">
-              <a href="#">
-                В Миссури школьную учительницу Брианну Коппейдж отстранили от
-                работы после того, как ее руководство узнало, что она ведет
-                аккаунт на OnlyFans — онлайн-платформе с интимным контентом. В
-                беседе с журналистами она сказала, что теперь зарабатывает на
-                OnlyFans от $8000 до $10 000 в месяц, причем ее доход увеличился
-                и стал таким после того, как новость о ней завирусилась. В школе
-                она получала $3500 в месяц ($42 000 в год). По словам Коппейдж,
-                изначально она решила завести аккаунт на OnlyFans, чтобы закрыть
-                студенческие кредиты.Девушка отметила, что искренне считала, что дети, которых она учит, никогда не найдут ее аккаунт на OnlyFans.</a
-              >
-            </div>
-            <div class="article_card_information">
-              <div class="article_card_media">
-                <div class="media_avatar"><img src="img/mainphoto.jpg" /></div>
-                <span class="media_source"
-                  ><a href="#">NSFW Times</a> · 2h ago</span
-                >
-              </div>
-              <div class="article_card_icon">
-                <span class="icon_share" id="shareButton"
-                  ><img src="img/share_icon.png" alt="Share"
-                /></span>
-                <div class="share_menu hidden" id="shareMenu">
-                  <div class="share_title">Поделиться</div>
-                  <div class="copy_link">
-                    <a href="#">Скопировать ссылку</a>
-                  </div>
-                  <div class="share_link">
-                    <a href="#">Поделиться ссылкой</a>
-                  </div>
-                  <div class="share_socials">
-                    <a href="#" class="social_btn">Telegram</a>
-                    <a href="#" class="social_btn">Facebook</a>
-                    <a href="#" class="social_btn">Twitter</a>
-                    <a href="#" class="social_btn">VKontakte</a>
-                  </div>
-                </div>
-                <span class="icon_favorites"
-                  ><img src="img/favorites_icon.png" alt="Favorites"
-                /></span>
-              </div>
-            </div>
-          </div>
-        </article>
+h2 {
+  font-family: "Ubuntu", serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+}
 
-        <!-- Title About Popular News -->
-        <article class="article_about_popular_news_card">
-          <div class="article_about_popular_card_content">
-            <div class="article_about_title_card_category">
-              <span class="section">POPULAR NEWS</span>
-            </div>
-          </div>
-        </article>
+h3 {
+  font-family: "Ubuntu", serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
 
-        <!-- Popular News Card -->
-        <article class="article_popular_news_card">
-          <div class="article_popular_card_content">
-            <h3 class="article_popular_card_title">
-              <a href="#">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              </a>
-            </h3>
-            <div class="article_card_category">
-              <span class="category">TRENDS</span>
-              <span class="category">ONLYFANS</span>
-            </div>
-            <div class="article_popular_card_description">
-              <a href="#"
-                >Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Dolorum doloribus temporibus laudantium reprehenderit dicta
-                blanditiis provident iusto non nisi atque, eaque neque minus ad
-                rerum aperiam quidem voluptates sed impedit! Lorem ipsum, dolor
-                sit amet consectetur adipisicing elit. Dolorum doloribus
-                temporibus laudantium reprehenderit dicta blanditiis provident
-                iusto non nisi atque, eaque neque minus ad rerum aperiam quidem
-                voluptates sed impedit!
-              </a>
-            </div>
-            <div class="article_popular_card_information">
-              <div class="article_card_media">
-                <div class="media_avatar"><img src="img/mainphoto.jpg" /></div>
-                <span class="media_source"
-                  ><a href="NFSWTimes.com">NSFW Times</a> · 2h ago</span
-                >
-              </div>
-              <div class="article_popular_card_icon card_icon">
-                <span class="icon_share" id="shareButton"
-                  ><img src="img/share_icon.png" alt="Share"
-                /></span>
-                <div class="share_menu hidden" id="shareMenu">
-                  <div class="share_title">Поделиться</div>
-                  <div class="copy_link">
-                    <a href="#">Скопировать ссылку</a>
-                  </div>
-                  <div class="share_link">
-                    <a href="#">Поделиться ссылкой</a>
-                  </div>
-                  <div class="share_socials">
-                    <a href="#" class="social_btn">Telegram</a>
-                    <a href="#" class="social_btn">Facebook</a>
-                    <a href="#" class="social_btn">Twitter</a>
-                    <a href="#" class="social_btn">VKontakte</a>
-                  </div>
-                </div>
-                <span class="icon_favorites"
-                  ><img src="img/favorites_icon.png" alt="Favorites"
-                /></span>
-              </div>
-            </div>
-          </div>
-        </article>
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f9fafb;
+  color: #111827;
+  height: 100%;
+}
 
-        <article class="article_popular_news_card">
-          <div class="article_popular_card_content">
-            <h3 class="article_popular_card_title">
-              <a href="#">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              </a>
-            </h3>
-            <div class="article_card_category">
-              <span class="category">TRENDS</span>
-              <span class="category">ONLYFANS</span>
-            </div>
-            <div class="article_popular_card_description">
-              <a href="#">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Dolorum doloribus temporibus laudantium reprehenderit dicta
-                blanditiis provident iusto non nisi atque, eaque neque minus ad
-                rerum aperiam quidem voluptates sed impedit! Lorem ipsum, dolor
-                sit amet consectetur adipisicing elit. Dolorum doloribus
-                temporibus laudantium reprehenderit dicta blanditiis provident
-                iusto non nisi atque, eaque neque minus ad rerum aperiam quidem
-                voluptates sed impedit!</a
-              >
-            </div>
-            <div class="article_popular_card_information">
-              <div class="article_card_media">
-                <div class="media_avatar"><img src="img/mainphoto.jpg" /></div>
-                <span class="media_source"
-                  ><a href="NFSWTimes.com">NSFW Times</a> · 2h ago</span
-                >
-              </div>
-              <div class="article_popular_card_icon card_icon">
-                <span class="icon_share" id="shareButton"
-                  ><img src="img/share_icon.png" alt="Share"
-                /></span>
-                <div class="share_menu hidden" id="shareMenu">
-                  <div class="share_title">Поделиться</div>
-                  <div class="copy_link">
-                    <a href="#">Скопировать ссылку</a>
-                  </div>
-                  <div class="share_link">
-                    <a href="#">Поделиться ссылкой</a>
-                  </div>
-                  <div class="share_socials">
-                    <a href="#" class="social_btn">Telegram</a>
-                    <a href="#" class="social_btn">Facebook</a>
-                    <a href="#" class="social_btn">Twitter</a>
-                    <a href="#" class="social_btn">VKontakte</a>
-                  </div>
-                </div>
-                <span class="icon_favorites"
-                  ><img src="img/favorites_icon.png" alt="Favorites"
-                /></span>
-              </div>
-            </div>
-          </div>
-        </article>
-      </main>
+.article_container {
+  max-width: auto;
+  margin: 0 auto;
+  padding: 0;
+}
 
-      <!-- Bottom Navigation -->
-      <nav class="bottom_nav">
-        <a href="index.html" class="nav_item_home nav_item">
-          <img src="img/Home.svg" alt="Home" /><span>Home</span>
-        </a>
-        <a href="favorites.html" class="nav_item_favorites nav_item">
-          <img src="img/Favorites.png" alt="Favorites" /><span>Favorites</span>
-        </a>
-        <a href="trends.html" class="nav_item_trends nav_item">
-          <img src="img/trends.svg" alt="Trends" /><span>Trends</span>
-        </a>
-        <a href="settings.html" class="nav_item_settings nav_item">
-          <img src="img/settings.png" alt="Settings" /><span>Settings</span>
-        </a>
-      </nav>
-    </div>
+/* Header */
+.article_top_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: 80px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #111827;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: none;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+}
 
-    <script src="script.js"></script>
-  </body>
-</html>
+.nav_back_button {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.nav_back_button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: #111827;
+  transition: filter 0.2s ease;
+}
+
+.nav_back_button:hover {
+  filter: invert(83%) sepia(37%) saturate(1116%) hue-rotate(187deg)
+    brightness(94%) contrast(92%);
+}
+
+.article_nav_title {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.article_nav_title .nav_title {
+  display: inline-block;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 4px 8px;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.article_nav_title .nav_title:nth-last-child(1) {
+  background: #fff;
+  color: #111827;
+}
+
+.nav_placeholder {
+  width: 25px;
+  height: 25px;
+}
+
+/* News Feed */
+.article_news_feed {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 90px;
+}
+
+/* News Card */
+.article_news_card {
+  background: #fff;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.article_card_content {
+  padding: 20px;
+}
+
+.article_card_title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.article_card_title a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.article_card_information {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article_card_information a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.article_card_media {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.media_avatar img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.media_source {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.media_source a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.article_card_icon {
+  display: flex;
+  gap: 20px;
+}
+
+.article_card_icon .icon_share,
+.article_card_icon .icon_favorites {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.article_card_icon .icon_favorites img,
+.article_card_icon .icon_share img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.article_card_icon .icon_favorites img {
+  transition: filter 0.2s ease;
+}
+
+.article_card_icon .icon_favorites.selected img {
+  filter: invert(42%) sepia(93%) saturate(564%) hue-rotate(290deg)
+    brightness(98%) contrast(92%);
+}
+
+.article_card_image img {
+  display: block;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.article_card_description {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.article_card_description a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.article_card_category {
+  display: flex;
+  gap: 8px;
+  padding: 0;
+}
+
+.article_card_category .category {
+  display: inline-block;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 5.9px 12px;
+  border-radius: 30px;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.category:nth-child(1) {
+  border: 1px solid #ff93d6;
+  background: #fff;
+  color: #ff93d6;
+}
+
+.category:nth-child(1):active {
+  border: 1px solid #ffa8dd;
+  background: #fff;
+  color: #ffa8dd;
+}
+
+.category:nth-child(1):hover {
+  border: 1px solid #ffa8dd;
+  background: #fff;
+  color: #ffa8dd;
+}
+
+.category:nth-last-child(1) {
+  border: 1px solid #a1bef1;
+  background: #fff;
+  color: #a1bef1;
+}
+
+.category:nth-last-child(1):hover {
+  border: 1px solid #b8d2ff;
+  background: #fff;
+  color: #b8d2ff;
+}
+
+.category:nth-last-child(1):active {
+  border: 1px solid #b8d2ff;
+  background: #fff;
+  color: #b8d2ff;
+}
+
+.icon_share,
+.icon_favorites {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.icon_favorites img,
+.icon_share img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.icon_favorites img {
+  transition: filter 0.2s ease;
+}
+
+.card_icon .icon_favorites.selected img {
+  filter: invert(42%) sepia(93%) saturate(564%) hue-rotate(290deg)
+    brightness(98%) contrast(92%);
+}
+
+.share_menu {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  background: white;
+  padding: 16px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+  z-index: 999;
+}
+
+.share_menu.block-visible {
+  transform: translateX(-50%) translateY(0%);
+  opacity: 1;
+  pointer-events: auto;
+  animation: slideBounceUp 0.5s ease;
+}
+
+@keyframes slideBounceUp {
+  0% {
+    transform: translateX(-50%) translateY(100%);
+  }
+  80% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0%);
+  }
+}
+
+.share_title {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.copy_link {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #e06eb5, #82a6e4);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.share_link {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+  background: rgba(170, 169, 173, 0.1);
+  color: #111827;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.copy_link a {
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+}
+
+.copy_link:hover a {
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.17s ease;
+}
+
+.copy_link:active a {
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.17s ease;
+}
+
+.share_link a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #111827;
+}
+
+.share_link:hover a {
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.share_link:active a {
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.copy_link:hover {
+  background: linear-gradient(135deg, #ff93d5, #9cc0ff);
+}
+
+.copy_link:active {
+  background: linear-gradient(135deg, #ff93d5, #9cc0ff);
+}
+
+.share_link:hover {
+  background: linear-gradient(135deg, #ff93d5, #9cc0ff);
+}
+
+.share_link:active {
+  background: linear-gradient(135deg, #ff93d5, #9cc0ff);
+}
+
+.share_socials {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-bottom: 30px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.share_socials::-webkit-scrollbar {
+  display: none;
+}
+
+.social_btn {
+  background: rgba(170, 169, 173, 0.1);
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #111;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.social_btn a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.social_btn:hover {
+  background: #e0e0e0;
+}
+
+.social_btn:active {
+  background: #e0e0e0;
+}
+
+/* Title About Popular News  */
+
+.article_about_popular_news_card {
+  background: #fff;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.article_about_popular_card_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  gap: 20px;
+}
+
+.article_about_popular_card_content .section {
+  display: inline-block;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.article_about_popular_card_content .section:nth-last-child(1) {
+  background: #fff;
+  color: #111827;
+}
+
+/* Popular News Cards */
+.article_popular_news_card {
+  background: #fff;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.article_popular_card_content {
+  padding: 20px;
+}
+
+.article_popular_card_content .category {
+  display: inline-block;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 5.9px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-bottom: 15px;
+  border-radius: 30px;
+}
+
+.category:nth-child(1) {
+  border: 1px solid #ff93d6;
+  background: #fff;
+  color: #ff93d6;
+}
+
+.category:nth-child(1):active {
+  border: 1px solid #ffa8dd;
+  background: #fff;
+  color: #ffa8dd;
+}
+
+.category:nth-child(1):hover {
+  border: 1px solid #ffa8dd;
+  background: #fff;
+  color: #ffa8dd;
+}
+
+.category:nth-last-child(1) {
+  border: 1px solid #a1bef1;
+  background: #fff;
+  color: #a1bef1;
+}
+
+.category:nth-last-child(1):hover {
+  border: 1px solid #b8d2ff;
+  background: #fff;
+  color: #b8d2ff;
+}
+
+.category:nth-last-child(1):active {
+  border: 1px solid #b8d2ff;
+  background: #fff;
+  color: #b8d2ff;
+}
+
+.article_popular_card_title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.article_popular_card_title a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.article_popular_card_description {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.article_popular_card_description a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.article_popular_card_information {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article_popular_card_media {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.article_popular_card_media .media_avatar img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.article_popular_card_media .media_source {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.article_popular_card_media .media_source a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.article_popular_card_icon {
+  display: flex;
+  gap: 20px;
+}
+
+.article_popular_card_icon .icon_share,
+.article_popular_card_icon .icon_favorites {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.article_popular_card_icon .icon_favorites img,
+.article_popular_card_icon .icon_share img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.article_popular_card_icon .icon_favorites img {
+  transition: filter 0.2s ease;
+}
+
+.article_popular_card_icon .icon_favorites.selected img {
+  filter: invert(42%) sepia(93%) saturate(564%) hue-rotate(290deg)
+    brightness(98%) contrast(92%);
+}
+
+/* Bottom Navigation */
+
+.bottom_nav {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(0);
+  background: #fff;
+  padding: 10px 20px 15px 20px;
+  margin-top: 10px;
+  height: 80px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.nav_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  background: none;
+  cursor: pointer;
+}
+
+.nav_item img {
+  display: block;
+}
+
+.nav_item_home img {
+  width: 23px;
+  height: 23px;
+  filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
+    hue-rotate(0deg);
+  transition: filter 0.2s ease;
+}
+
+.nav_item_favorites img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
+    hue-rotate(0deg);
+  transition: filter 0.2s ease;
+}
+
+.nav_item_trends img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
+    hue-rotate(0deg);
+  transition: filter 0.2s ease;
+}
+
+.nav_item_settings img {
+  width: 23px;
+  height: 23px;
+  filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
+    hue-rotate(0deg);
+  transition: filter 0.2s ease;
+}
+
+.nav_item.active img {
+  filter: invert(83%) sepia(17%) saturate(1116%) hue-rotate(187deg)
+    brightness(94%) contrast(92%);
+}
+
+.nav_item span {
+  font-size: 12.9px;
+  font-weight: 500;
+  line-height: 1px;
+  color: #a9a9a9;
+}
+
+.nav_item.active span {
+  color: #a1bef1;
+}
+
+.bottom_nav .nav_item,
+.bottom_nav .nav_item span,
+.bottom_nav .nav_item.active span {
+  text-decoration: none;
+}
