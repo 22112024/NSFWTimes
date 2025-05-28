@@ -163,23 +163,25 @@ body {
 }
 
 .tab {
-  padding: 8px 20px;
+  padding: 5px 16px;
   border-radius: 30px;
   background: #fff;
-  border: 1px solid rgba(170, 169, 173, 0.24);
+  border: 1px solid rgb(220, 214, 240);
   font-size: 16px;
   white-space: nowrap;
   text-decoration: none;
-  color: #111827;
+  color: rgb(220, 214, 240);
   cursor: pointer;
 }
 
 .tab.active {
-  background: rgba(170, 169, 173, 0.1);
+  border: 1px solid #a1bef1;
+  color: #a1bef1;
 }
 
 .tab:hover {
-  background: rgba(170, 169, 173, 0.1);
+  background: rgb(249, 252, 255);
+  transform: scale(1.03) translateZ(1px);
 }
 
 /* News Feed */
@@ -214,7 +216,7 @@ body {
 }
 
 .card_content {
-  padding: 20px;
+  padding: 30px;
 }
 
 .card_category {
