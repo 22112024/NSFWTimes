@@ -7,19 +7,19 @@
 h1 {
   font-family: "Ubuntu", serif;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 33px;
 }
 
 h2 {
   font-family: "Ubuntu", serif;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 h3 {
   font-family: "Ubuntu", serif;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 400;
   line-height: 1.4;
 }
@@ -77,6 +77,9 @@ body {
 }
 
 .article_nav_title {
+  font-family: "Ubuntu", serif;
+  font-weight: 500;
+  font-size: 18px;
   flex-grow: 1;
   text-align: center;
 }
@@ -129,8 +132,6 @@ body {
 }
 
 .article_card_title {
-  font-size: 18px;
-  font-weight: 500;
   margin-bottom: 15px;
 }
 
@@ -234,7 +235,7 @@ body {
 .article_card_category .category {
   display: inline-block;
   color: #fff;
-  font-size: 14px;
+  font-size: 12.9px;
   font-weight: 400;
   padding: 5.9px 12px;
   border-radius: 30px;
@@ -262,7 +263,7 @@ body {
 }
 
 .category:nth-last-child(1) {
-  border: 1px solid #a1bef1;
+  border: 1px solid #9bb9ed;
   background: #fff;
   color: #a1bef1;
 }
@@ -340,7 +341,8 @@ body {
 }
 
 .share_title {
-  font-weight: 600;
+  font-family: "Ubuntu", serif;
+  font-weight: 500;
   font-size: 18px;
   margin-bottom: 15px;
   text-align: center;
@@ -485,7 +487,7 @@ body {
 .article_about_popular_card_content .section {
   display: inline-block;
   color: #fff;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 500;
   padding: 4px 8px;
   border-radius: 4px;
@@ -517,7 +519,7 @@ body {
 .article_popular_card_content .category {
   display: inline-block;
   color: #fff;
-  font-size: 14px;
+  font-size: 12.9px;
   font-weight: 400;
   padding: 5.9px 12px;
   border-radius: 4px;
@@ -546,7 +548,7 @@ body {
 }
 
 .category:nth-last-child(1) {
-  border: 1px solid #a1bef1;
+  border: 1px solid #9bb9ed;
   background: #fff;
   color: #a1bef1;
 }
@@ -643,7 +645,7 @@ body {
     brightness(98%) contrast(92%);
 }
 
-/* Bottom Navigation */
+/* Bottom navigation */
 
 .bottom_nav {
   display: flex;
@@ -687,16 +689,18 @@ body {
 }
 
 .nav_item_favorites img {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 1px;
   filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
     hue-rotate(0deg);
   transition: filter 0.2s ease;
 }
 
 .nav_item_trends img {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
+  margin-bottom: 1px;
   filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
     hue-rotate(0deg);
   transition: filter 0.2s ease;
