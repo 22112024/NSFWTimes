@@ -450,16 +450,17 @@ article.visible {
   font-weight: 500;
   font-size: 18px;
   text-align: center;
+  margin-right: 10px;
 }
 
 .share_close {
   display: flex;
   color: #111827;
-  padding: 10px;
+  padding: 12.9px;
   width: 20px;
   height: 20px;
   background-color: rgba(170, 169, 173, 0.2);
-  border-radius: 10px;
+  border-radius: 50%;
   align-items: center;
   justify-content: center;
   cursor: pointer;
