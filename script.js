@@ -188,6 +188,14 @@ function smoothHide(menu) {
   }, 500);
 }
 
+const closeBtn = shareMenu.querySelector(".share_close");
+
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    smoothHide(shareMenu);
+  });
+}
+
 // Settings
 
 if (window.location.pathname.includes("settings.html")) {
