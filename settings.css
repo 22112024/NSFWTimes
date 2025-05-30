@@ -35,7 +35,7 @@ h3 {
   transform: translateX(-50%) translateY(100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.4s ease, opacity 0.3s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease 0.3s;
 }
 
 .flex-visible {
@@ -71,6 +71,7 @@ body {
 
 /* Header */
 .settings_top_nav {
+  font-family: "Ubuntu", serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -148,7 +149,7 @@ body {
   background: #fff;
   color: #111827;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   padding: 4px 8px;
   border-radius: 4px;
   white-space: nowrap;
