@@ -35,7 +35,7 @@ h3 {
   transform: translateX(-50%) translateY(100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.4s ease, opacity 0.3s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease 0.3s;
 }
 
 .flex-visible {
@@ -364,7 +364,7 @@ body {
   transform: translateX(-50%) translateY(100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.4s ease, opacity 0.3s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease 0.3s;
 }
 
 @keyframes slideBounceUp {
@@ -524,20 +524,16 @@ body {
 }
 
 .article_about_popular_card_content .section {
+  font-family: "Ubuntu", serif;
   display: inline-block;
-  color: #fff;
-  font-size: 17px;
   font-weight: 500;
+  color: #111827;
+  font-size: 17px;
   padding: 4px 8px;
   border-radius: 4px;
   white-space: nowrap;
   cursor: pointer;
   margin-right: 5px;
-}
-
-.article_about_popular_card_content .section:nth-last-child(1) {
-  background: #fff;
-  color: #111827;
 }
 
 /* Popular News Cards */
