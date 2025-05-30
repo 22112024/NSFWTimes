@@ -421,10 +421,9 @@ article.visible {
 
 .share_menu_title {
   display: flex;
-  position: relative;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 15px;
+  padding-bottom: 14px;
   border-bottom: 1px solid rgba(170, 169, 173, 0.2);
 }
 
@@ -472,7 +471,7 @@ article.visible {
 .share_link {
   display: block;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   background: rgba(170, 169, 173, 0.1);
   color: #111827;
   border: none;
