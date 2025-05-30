@@ -49,13 +49,12 @@ function handleSearch(event) {
     if (query === "") {
       article.innerHTML = originalHTML;
 
-      // Сброс display, чтобы элемент был видим для анимации
+      article.classList.remove("visible");
       article.style.display = "block";
 
-      // Сброс класса и перезапуск анимации
-      article.classList.remove("visible");
-      void article.offsetWidth; // <--- ВАЖНО: форсирует перерисовку
-      article.classList.add("visible");
+      requestAnimationFrame(() => {
+        article.classList.add("visible");
+      });
 
       return;
     }
