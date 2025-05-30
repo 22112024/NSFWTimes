@@ -24,6 +24,61 @@ if (searchContainer && searchIcon && searchClose && siteTitle) {
   console.error("Один или несколько элементов не найдены!");
 }
 
+document.querySelectorAll("article").forEach((article) => {
+  article.classList.add("visible");
+});
+
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+  searchInput.addEventListener("input", handleSearch);
+}
+
+function handleSearch(event) {
+  const query = event.target.value.toLowerCase().trim();
+  const articles = document.querySelectorAll("article");
+
+  articles.forEach((article) => {
+    const originalHTML =
+      article.getAttribute("data-original") || article.innerHTML;
+
+    if (!article.getAttribute("data-original")) {
+      article.setAttribute("data-original", originalHTML);
+    }
+
+    const plainText = originalHTML.toLowerCase();
+
+    if (query === "") {
+      article.innerHTML = originalHTML;
+      article.style.display = "block";
+      article.classList.remove("visible");
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          article.classList.add("visible");
+        });
+      });
+      return;
+    }
+
+    if (plainText.includes(query)) {
+      const regex = new RegExp(`(${query})`, "gi");
+      const highlighted = originalHTML.replace(regex, "<mark>$1</mark>");
+      article.innerHTML = highlighted;
+      article.style.display = "block";
+
+      requestAnimationFrame(() => {
+        article.classList.add("visible");
+      });
+    } else {
+      article.classList.remove("visible");
+
+      setTimeout(() => {
+        article.style.display = "none";
+      }, 400);
+    }
+  });
+}
+
 // Favorites
 
 const favoriteIcons = document.querySelectorAll(".icon_favorites");
@@ -93,7 +148,7 @@ articles.forEach((article) => {
       setTimeout(() => {
         menu.classList.remove("block-hiding");
         menu.classList.add("hidden");
-      }, 400); // должен совпадать с transition в CSS
+      }, 500);
     }
 
     if (shareLinkBtn) {
