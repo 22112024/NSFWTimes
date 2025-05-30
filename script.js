@@ -39,24 +39,24 @@ function handleSearch(event) {
   const articles = document.querySelectorAll("article");
 
   articles.forEach((article) => {
-    const originalHTML =
-      article.getAttribute("data-original") || article.innerHTML;
-
-    if (!article.getAttribute("data-original")) {
-      article.setAttribute("data-original", originalHTML);
+    if (!article.dataset.original) {
+      article.dataset.original = article.innerHTML;
     }
 
+    const originalHTML = article.dataset.original;
     const plainText = originalHTML.toLowerCase();
 
     if (query === "") {
       article.innerHTML = originalHTML;
+
+      // Сброс display, чтобы элемент был видим для анимации
       article.style.display = "block";
+
+      // Сброс класса и перезапуск анимации
       article.classList.remove("visible");
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          article.classList.add("visible");
-        });
-      });
+      void article.offsetWidth; // <--- ВАЖНО: форсирует перерисовку
+      article.classList.add("visible");
+
       return;
     }
 
@@ -66,15 +66,15 @@ function handleSearch(event) {
       article.innerHTML = highlighted;
       article.style.display = "block";
 
-      requestAnimationFrame(() => {
-        article.classList.add("visible");
-      });
+      // Обеспечим анимацию даже если класс уже есть
+      article.classList.remove("visible");
+      void article.offsetWidth;
+      article.classList.add("visible");
     } else {
       article.classList.remove("visible");
-
       setTimeout(() => {
         article.style.display = "none";
-      }, 400);
+      }, 400); // Должен совпадать с CSS transition
     }
   });
 }
