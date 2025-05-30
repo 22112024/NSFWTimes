@@ -105,96 +105,90 @@ if (window.location.pathname.includes("favorites")) {
 // Share
 
 const articles = document.querySelectorAll("article");
+const shareMenu = document.querySelector(".share_menu");
+const copyLinkBtn = shareMenu.querySelector(".copy_link");
+const nativeShareBtn = shareMenu.querySelector(".share_link");
+let currentArticleUrl = "";
 
 articles.forEach((article) => {
   const shareButton = article.querySelector(".icon_share");
-  const shareMenu = article.querySelector(".share_menu");
-  const shareLinkBtn = article.querySelector(".copy_link");
-  const nativeShareBtn = article.querySelector(".share_link");
 
-  if (shareButton && shareMenu) {
+  if (shareButton) {
     shareButton.addEventListener("click", (event) => {
       event.stopPropagation();
-      shareMenu.classList.toggle("block-visible");
-      shareMenu.classList.toggle("hidden");
+
+      const articleLink =
+        article.querySelector(".card_title a")?.href || window.location.href;
+      currentArticleUrl = articleLink;
+
+      shareMenu.classList.remove("hidden");
+      shareMenu.classList.add("block-visible");
     });
-
-    document.addEventListener("click", (event) => {
-      const isClickInside =
-        shareMenu.contains(event.target) || shareButton.contains(event.target);
-      if (!isClickInside && shareMenu.classList.contains("block-visible")) {
-        smoothHide(shareMenu);
-      }
-    });
-
-    let startY = 0;
-
-    shareMenu.addEventListener("touchstart", (event) => {
-      startY = event.touches[0].clientY;
-    });
-
-    shareMenu.addEventListener("touchend", (event) => {
-      const endY = event.changedTouches[0].clientY;
-      const deltaY = endY - startY;
-      if (deltaY > 40 && shareMenu.classList.contains("block-visible")) {
-        smoothHide(shareMenu);
-      }
-    });
-
-    function smoothHide(menu) {
-      menu.classList.remove("block-visible");
-      menu.classList.add("block-hiding");
-
-      setTimeout(() => {
-        menu.classList.remove("block-hiding");
-        menu.classList.add("hidden");
-      }, 500);
-    }
-
-    if (shareLinkBtn) {
-      shareLinkBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        navigator.clipboard
-          .writeText(window.location.href)
-          .then(() => {
-            shareLinkBtn.textContent = "Ссылка скопирована";
-            setTimeout(() => {
-              shareLinkBtn.textContent = "Скопировать ссылку";
-            }, 3000);
-          })
-          .catch(() => {
-            alert("Не удалось скопировать ссылку");
-          });
-      });
-    }
-
-    if (nativeShareBtn) {
-      nativeShareBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        const title =
-          article.querySelector(".card_title a")?.textContent.trim() ||
-          document.title;
-        const url = window.location.href;
-
-        if (navigator.share) {
-          navigator
-            .share({
-              title: title,
-              text: "Прочитай статью с 'клубничкой'!",
-              url: url,
-            })
-            .catch((error) => {
-              console.log("Ошибка при открытии системного меню:", error);
-            });
-        } else {
-          alert("Ваш браузер не поддерживает системное меню «Поделиться».");
-        }
-      });
-    }
   }
 });
 
-// === Settings only ===
+document.addEventListener("click", (event) => {
+  const isClickInside = shareMenu.contains(event.target);
+  if (!isClickInside && shareMenu.classList.contains("block-visible")) {
+    smoothHide(shareMenu);
+  }
+});
+
+let startY = 0;
+shareMenu.addEventListener("touchstart", (event) => {
+  startY = event.touches[0].clientY;
+});
+shareMenu.addEventListener("touchend", (event) => {
+  const endY = event.changedTouches[0].clientY;
+  const deltaY = endY - startY;
+  if (deltaY > 40 && shareMenu.classList.contains("block-visible")) {
+    smoothHide(shareMenu);
+  }
+});
+
+copyLinkBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  navigator.clipboard
+    .writeText(currentArticleUrl)
+    .then(() => {
+      copyLinkBtn.textContent = "Ссылка скопирована";
+      setTimeout(() => {
+        copyLinkBtn.textContent = "Скопировать ссылку";
+      }, 3000);
+    })
+    .catch(() => {
+      alert("Не удалось скопировать ссылку");
+    });
+});
+
+nativeShareBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (navigator.share) {
+    navigator
+      .share({
+        title: "Интересная статья",
+        text: "Прочитай статью с 'клубничкой'!",
+        url: currentArticleUrl,
+      })
+      .catch((error) => {
+        console.log("Ошибка при открытии системного меню:", error);
+      });
+  } else {
+    alert("Ваш браузер не поддерживает системное меню «Поделиться».");
+  }
+});
+
+function smoothHide(menu) {
+  menu.classList.remove("block-visible");
+  menu.classList.add("block-hiding");
+
+  setTimeout(() => {
+    menu.classList.remove("block-hiding");
+    menu.classList.add("hidden");
+  }, 500);
+}
+
+// Settings
 
 if (window.location.pathname.includes("settings.html")) {
   const supportMenu = document.getElementById("supportMenu");
