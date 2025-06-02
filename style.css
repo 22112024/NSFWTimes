@@ -124,7 +124,7 @@ article.visible {
     opacity: 0;
   }
   70% {
-    transform: scale(1.1) rotate(-5deg)
+    transform: scale(1.1) rotate(-5deg);
     opacity: 0.8;
   }
   100% {
@@ -211,7 +211,6 @@ article.visible {
 }
 
 .tab:hover {
-  background: rgb(249, 252, 255);
   transform: scale(1.03) translateZ(1px);
 }
 
