@@ -76,7 +76,8 @@ function handleSearch(event) {
   });
 }
 
-// Favorites
+// FAVORITES
+
 document.addEventListener("DOMContentLoaded", () => {
   // Динамическое назначение ID для статей
   const articles = document.querySelectorAll("article");
@@ -104,18 +105,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const titleElement =
       article.querySelector(".card_title a") ||
-      article.querySelector(".favorites_card_title a") ||
-      article.querySelector(".popular_card_title a") ||
-      article.querySelector(".article_popular_news_card a");
+      article.querySelector(".popular_card_title") ||
+      article.querySelector(".article_popular_card_title a") ||
+      article.querySelector(".trends_card_title a");
 
     const title = titleElement?.textContent?.trim();
     const url = titleElement?.href;
 
     const descriptionElement =
       article.querySelector(".card_description a") ||
-      article.querySelector(".favorites_card_description a") ||
-      article.querySelector(".popular_card_description a") ||
-      article.querySelector(".article_popular_news_card a");
+      article.querySelector(".article_card_description") ||
+      article.querySelector(".article_popular_card_description a") ||
+      article.querySelector(".trends_card_description a");
 
     const description = descriptionElement?.textContent?.trim();
 
@@ -149,7 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleFavoriteState(event) {
     const icon = event.currentTarget;
     const article =
-      icon.closest(".article_popular_news_card") || icon.closest("article");
+      icon.closest(".article_popular_card_description") ||
+      icon.closest("article");
     const articleId = article?.dataset.id;
     if (!articleId) {
       console.error("Статья не имеет data-id:", article);
@@ -181,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const icons = document.querySelectorAll(".icon_favorites");
     icons.forEach((icon) => {
       const articleId =
-        icon.closest(".article_popular_news_card")?.dataset.id ||
+        icon.closest(".article_popular_card_description")?.dataset.id ||
         icon.closest("article")?.dataset.id;
       const isFavorite = favorites.some((item) => item.id === articleId);
       icon.classList.toggle("selected", isFavorite);
@@ -222,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
         : "";
 
       const articleElement = document.createElement("article");
-      articleElement.classList.add("article_popular_news_card");
+      articleElement.classList.add("article_popular_card_description");
       articleElement.setAttribute("data-id", article.id);
 
       articleElement.innerHTML = `
