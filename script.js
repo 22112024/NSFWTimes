@@ -64,8 +64,6 @@ function handleSearch(event) {
       const highlighted = originalHTML.replace(regex, "<mark>$1</mark>");
       article.innerHTML = highlighted;
       article.style.display = "block";
-
-      // Обеспечим анимацию даже если класс уже есть
       article.classList.remove("visible");
       void article.offsetWidth;
       article.classList.add("visible");
@@ -73,7 +71,7 @@ function handleSearch(event) {
       article.classList.remove("visible");
       setTimeout(() => {
         article.style.display = "none";
-      }, 400); // Должен совпадать с CSS transition
+      }, 400);
     }
   });
 }
@@ -100,82 +98,86 @@ if (window.location.pathname.includes("favorites")) {
     icon.addEventListener("click", toggleFavoriteState);
   });
 }
-
-// Share
-
-const articles = document.querySelectorAll("article");
 const shareMenu = document.querySelector(".share_menu");
-const copyLinkBtn = shareMenu.querySelector(".copy_link");
-const nativeShareBtn = shareMenu.querySelector(".share_link");
-let currentArticleUrl = "";
 
-articles.forEach((article) => {
-  const shareButton = article.querySelector(".icon_share");
+if (shareMenu) {
+  const copyLinkBtn = shareMenu.querySelector(".copy_link");
+  const nativeShareBtn = shareMenu.querySelector(".share_link");
+  let currentArticleUrl = "";
 
-  if (shareButton) {
-    shareButton.addEventListener("click", (event) => {
-      event.stopPropagation();
+  document.querySelectorAll("article").forEach((article) => {
+    const shareButton = article.querySelector(".icon_share");
+    if (shareButton) {
+      shareButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const articleLink =
+          article.querySelector(".card_title a")?.href || window.location.href;
+        currentArticleUrl = articleLink;
 
-      const articleLink =
-        article.querySelector(".card_title a")?.href || window.location.href;
-      currentArticleUrl = articleLink;
-
-      shareMenu.classList.remove("hidden");
-      shareMenu.classList.add("block-visible");
-    });
-  }
-});
-
-document.addEventListener("click", (event) => {
-  const isClickInside = shareMenu.contains(event.target);
-  if (!isClickInside && shareMenu.classList.contains("block-visible")) {
-    smoothHide(shareMenu);
-  }
-});
-
-let startY = 0;
-shareMenu.addEventListener("touchstart", (event) => {
-  startY = event.touches[0].clientY;
-});
-shareMenu.addEventListener("touchend", (event) => {
-  const endY = event.changedTouches[0].clientY;
-  const deltaY = endY - startY;
-  if (deltaY > 40 && shareMenu.classList.contains("block-visible")) {
-    smoothHide(shareMenu);
-  }
-});
-
-copyLinkBtn.addEventListener("click", (event) => {
-  event.preventDefault();
-  navigator.clipboard
-    .writeText(currentArticleUrl)
-    .then(() => {
-      copyLinkBtn.textContent = "Ссылка скопирована";
-      setTimeout(() => {
-        copyLinkBtn.textContent = "Скопировать ссылку";
-      }, 3000);
-    })
-    .catch(() => {
-      alert("Не удалось скопировать ссылку");
-    });
-});
-
-nativeShareBtn.addEventListener("click", (event) => {
-  event.preventDefault();
-  if (navigator.share) {
-    navigator
-      .share({
-        title: "Интересная статья",
-        text: "Прочитай статью с 'клубничкой'!",
-        url: currentArticleUrl,
-      })
-      .catch((error) => {
-        console.log("Ошибка при открытии системного меню:", error);
+        shareMenu.classList.remove("hidden");
+        shareMenu.classList.add("block-visible");
       });
-  } else {
-    alert("Ваш браузер не поддерживает системное меню «Поделиться».");
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    const isClickInside = shareMenu.contains(event.target);
+    if (!isClickInside && shareMenu.classList.contains("block-visible")) {
+      smoothHide(shareMenu);
+    }
+  });
+
+  let startY = 0;
+  shareMenu.addEventListener("touchstart", (event) => {
+    startY = event.touches[0].clientY;
+  });
+  shareMenu.addEventListener("touchend", (event) => {
+    const endY = event.changedTouches[0].clientY;
+    const deltaY = endY - startY;
+    if (deltaY > 40 && shareMenu.classList.contains("block-visible")) {
+      smoothHide(shareMenu);
+    }
+  });
+
+  copyLinkBtn?.addEventListener("click", (event) => {
+    event.preventDefault();
+    navigator.clipboard
+      .writeText(currentArticleUrl)
+      .then(() => {
+        copyLinkBtn.textContent = "Ссылка скопирована";
+        setTimeout(() => {
+          copyLinkBtn.textContent = "Скопировать ссылку";
+        }, 3000);
+      })
+      .catch(() => {
+        alert("Не удалось скопировать ссылку");
+      });
+  });
+
+  nativeShareBtn?.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Интересная статья",
+          text: "Прочитай статью с 'клубничкой'!",
+          url: currentArticleUrl,
+        })
+        .catch((error) => {
+          console.log("Ошибка при открытии системного меню:", error);
+        });
+    } else {
+      alert("Ваш браузер не поддерживает системное меню «Поделиться».");
+    }
+  });
+
+  const closeBtn = shareMenu.querySelector(".share_close");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      smoothHide(shareMenu);
+    });
   }
-});
+}
 
 function smoothHide(menu) {
   menu.classList.remove("block-visible");
@@ -185,14 +187,6 @@ function smoothHide(menu) {
     menu.classList.remove("block-hiding");
     menu.classList.add("hidden");
   }, 500);
-}
-
-const closeBtn = shareMenu.querySelector(".share_close");
-
-if (closeBtn) {
-  closeBtn.addEventListener("click", () => {
-    smoothHide(shareMenu);
-  });
 }
 
 // Settings
@@ -354,14 +348,25 @@ if (window.location.pathname.includes("settings.html")) {
 
 // === Bottom navigation (подсветка кнопок) ===
 document.addEventListener("DOMContentLoaded", function () {
-  const currentPath = window.location.pathname.split("/").pop();
+  const currentPath = window.location.pathname
+    .split("/")
+    .pop()
+    .replace(".html", "")
+    .toLowerCase();
   const navItems = document.querySelectorAll(".bottom_nav a");
 
   navItems.forEach((item) => {
-    const linkPath = item.pathname.split("/").pop();
-    item.classList.remove("active");
+    const linkPath = item
+      .getAttribute("href")
+      .split("/")
+      .pop()
+      .replace(".html", "")
+      .toLowerCase();
+
     if (linkPath === currentPath) {
       item.classList.add("active");
+    } else {
+      item.classList.remove("active");
     }
   });
 });
