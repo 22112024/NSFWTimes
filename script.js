@@ -77,62 +77,189 @@ function handleSearch(event) {
 }
 
 // Favorites
+document.addEventListener("DOMContentLoaded", () => {
+  // Динамическое назначение ID для статей
+  const articles = document.querySelectorAll("article");
+  articles.forEach((article, index) => {
+    const uniqueId = `article-${index + 1}`;
+    article.setAttribute("data-id", uniqueId);
+  });
 
-const favoriteIcons = document.querySelectorAll(".icon_favorites");
-
-function getFavorites() {
-  return JSON.parse(localStorage.getItem("favorites")) || [];
-}
-
-function saveFavorites(favorites) {
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-}
-
-function getArticleHTML(article) {
-  return article.outerHTML;
-}
-
-function toggleFavoriteState(event) {
-  const icon = event.currentTarget;
-  const article = icon.closest("article");
-
-  icon.classList.toggle("selected");
-  const isSelected = icon.classList.contains("selected");
-
-  let favorites = getFavorites();
-  const articleHTML = getArticleHTML(article);
-
-  if (isSelected) {
-    if (!favorites.includes(articleHTML)) {
-      favorites.push(articleHTML);
-    }
-  } else {
-    favorites = favorites.filter((html) => html !== articleHTML);
+  // Существующий код начинается здесь
+  function getFavorites() {
+    return JSON.parse(localStorage.getItem("favorites")) || [];
   }
 
-  saveFavorites(favorites);
-}
+  function saveFavorites(favorites) {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }
 
-favoriteIcons.forEach((icon) => {
-  icon.addEventListener("click", toggleFavoriteState);
-});
+  function isValidArticleData(data) {
+    return data && data.id && data.title && data.url && data.description;
+  }
 
-if (window.location.pathname.includes("favorites")) {
-  const container = document.querySelector(".articles_container");
-  if (container) {
-    container.innerHTML = "";
+  function getArticleData(article) {
+    const articleId = article?.dataset.id;
+    if (!articleId) return null;
+
+    const titleElement =
+      article.querySelector(".card_title a") ||
+      article.querySelector(".favorites_card_title a") ||
+      article.querySelector(".popular_card_title a") ||
+      article.querySelector(".article_popular_news_card a");
+
+    const title = titleElement?.textContent?.trim();
+    const url = titleElement?.href;
+
+    const descriptionElement =
+      article.querySelector(".card_description a") ||
+      article.querySelector(".favorites_card_description a") ||
+      article.querySelector(".popular_card_description a") ||
+      article.querySelector(".article_popular_news_card a");
+
+    const description = descriptionElement?.textContent?.trim();
+
+    const categories = [...article.querySelectorAll(".category")].map((el) =>
+      el.textContent.trim()
+    );
+
+    const image = article.querySelector(".media_avatar img")?.src;
+    const source = article
+      .querySelector(".media_source a")
+      ?.textContent?.trim();
+    const time = article
+      .querySelector(".media_source")
+      ?.textContent.split("·")[1]
+      ?.trim();
+
+    if (!title || !url || !description) return null;
+
+    return {
+      id: articleId,
+      title,
+      url,
+      description,
+      categories,
+      image,
+      source,
+      time,
+    };
+  }
+
+  function toggleFavoriteState(event) {
+    const icon = event.currentTarget;
+    const article =
+      icon.closest(".article_popular_news_card") || icon.closest("article");
+    const articleId = article?.dataset.id;
+    if (!articleId) {
+      console.error("Статья не имеет data-id:", article);
+      return;
+    }
+
+    let favorites = getFavorites();
+    const index = favorites.findIndex((item) => item.id === articleId);
+
+    if (index !== -1) {
+      favorites.splice(index, 1);
+      icon.classList.remove("selected");
+    } else {
+      const data = getArticleData(article);
+      if (isValidArticleData(data)) {
+        favorites.push(data);
+        icon.classList.add("selected");
+      } else {
+        console.warn("Некорректные данные статьи, не добавлено в избранное");
+      }
+    }
+
+    saveFavorites(favorites);
+    markFavorites();
+  }
+
+  function markFavorites() {
     const favorites = getFavorites();
-    favorites.forEach((html) => {
-      container.insertAdjacentHTML("beforeend", html);
+    const icons = document.querySelectorAll(".icon_favorites");
+    icons.forEach((icon) => {
+      const articleId =
+        icon.closest(".article_popular_news_card")?.dataset.id ||
+        icon.closest("article")?.dataset.id;
+      const isFavorite = favorites.some((item) => item.id === articleId);
+      icon.classList.toggle("selected", isFavorite);
     });
+  }
 
-    container.querySelectorAll(".icon_favorites").forEach((icon) => {
-      icon.classList.add("selected");
-      icon.setAttribute("aria-pressed", "true");
+  function initFavoriteIcons() {
+    document.querySelectorAll(".icon_favorites").forEach((icon) => {
+      icon.removeEventListener("click", toggleFavoriteState);
       icon.addEventListener("click", toggleFavoriteState);
     });
   }
-}
+
+  initFavoriteIcons();
+  markFavorites();
+
+  if (window.location.pathname.includes("favorites.html")) {
+    const container = document.getElementById("favorites-container");
+    const favorites = getFavorites();
+
+    if (!favorites.length) {
+      container.innerHTML = "<p>У вас пока нет избранных статей.</p>";
+      return;
+    }
+
+    container.innerHTML = "";
+
+    favorites.forEach((article) => {
+      if (!isValidArticleData(article)) {
+        console.warn("Некорректные данные статьи в избранном:", article);
+        return;
+      }
+
+      const categoriesHTML = Array.isArray(article.categories)
+        ? article.categories
+            .map((cat) => `<span class="category">${cat}</span>`)
+            .join("")
+        : "";
+
+      const articleElement = document.createElement("article");
+      articleElement.classList.add("article_popular_news_card");
+      articleElement.setAttribute("data-id", article.id);
+
+      articleElement.innerHTML = `
+        <div class="favorites_card_content">
+          <h2 class="favorites_card_title">
+            <a href="${article.url}">${article.title || "Без названия"}</a>
+          </h2>
+          <div class="favorites_card_category">
+            ${categoriesHTML}
+          </div>
+          <div class="favorites_card_description">
+            <h3><a href="${article.url}">${article.description || ""}</a></h3>
+          </div>
+          <div class="favorites_card_information">
+            <div class="favorites_card_media">
+              <div class="media_avatar"><img src="${
+                article.image || "img/default.jpg"
+              }" /></div>
+              <span class="media_source"><a href="#">${
+                article.source || ""
+              }</a> · ${article.time || ""}</span>
+            </div>
+            <div class="favorites_card_icon card_icon">
+              <span class="icon_share"><img src="img/share_icon.png" alt="Share" /></span>
+              <span class="icon_favorites selected"><img src="img/favorites_icon.png" alt="Favorites" /></span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(articleElement);
+    });
+
+    initFavoriteIcons();
+    markFavorites();
+  }
+});
 
 // SHARE
 
