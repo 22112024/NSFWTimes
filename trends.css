@@ -146,7 +146,7 @@ body {
 }
 
 .trends_tab {
-  padding: 5.9px 12px;
+  padding: 5.9px 16px;
   border-radius: 30px;
   border: none;
   font-size: 16px;
@@ -154,22 +154,16 @@ body {
   cursor: pointer;
   border: 1px solid rgb(203, 203, 205);
   color: rgb(203, 203, 205);
-}
-
-.trends_tab {
-  padding: 5.9px 12px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-  white-space: nowrap;
-  cursor: pointer;
-  border: 1px solid rgb(203, 203, 205);
-  color: rgb(203, 203, 205);
-  background: #fff;
+  background: #f9fafb;
   transition: all 0.3s ease;
 }
 
-/* Стили активного таба (любой, кроме All) */
+.trends_tab.active[data-tag="all"] {
+  color: #8fe1d7;
+  border-color: #8fe1d7;
+  background: #f9fafb;
+}
+
 .trends_tab.active[data-tag="funny"] {
   color: #f1a1d9;
   border-color: #f1a1d9;
@@ -203,13 +197,6 @@ body {
 .trends_tab.active[data-tag="models"] {
   color: #e192d8;
   border-color: #e192d8;
-  background: #f9fafb;
-}
-
-/* Специально для #All */
-.trends_tab.active[data-tag="all"] {
-  color: #8fe1d7;
-  border-color: #8fe1d7;
   background: #f9fafb;
 }
 
@@ -331,7 +318,7 @@ body {
   color: #fff;
   font-size: 12.9px;
   font-weight: 400;
-  padding: 5.9px 12px;
+  padding: 5.9px 16px;
   border-radius: 30px;
   white-space: nowrap;
   cursor: pointer;
