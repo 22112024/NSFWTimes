@@ -613,6 +613,7 @@ body {
   background: #e0e0e0;
 }
 
+
 /* Bottom navigation */
 
 .bottom_nav {
@@ -650,15 +651,15 @@ body {
 
 .nav_item_home img {
   width: 23px;
-  height: 23px;
+  height: 24px;
   filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
     hue-rotate(0deg);
   transition: filter 0.2s ease;
 }
 
 .nav_item_favorites img {
-  width: 20px;
-  height: 20px;
+  width: 18.5px;
+  height: 19px;
   margin-bottom: 1px;
   filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
     hue-rotate(0deg);
@@ -676,7 +677,7 @@ body {
 
 .nav_item_settings img {
   width: 23px;
-  height: 23px;
+  height: 22px;
   filter: brightness(0) saturate(100%) invert(52%) sepia(0%) saturate(0%)
     hue-rotate(0deg);
   transition: filter 0.2s ease;
