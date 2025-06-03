@@ -135,12 +135,22 @@ body {
   border-radius: 30px;
 }
 
-.settings_section_inner {
+.settings_section_support,
+.settings_section_partnership,
+.settings_section_design {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
-  gap: 20px;
+  cursor: pointer;
+}
+
+.settings_section_text_size,
+.settings_section_donate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
   cursor: pointer;
 }
 
@@ -284,6 +294,44 @@ body {
   background: #fff;
   border: 2px solid #a1bef1;
   cursor: pointer;
+}
+
+.settings_donate {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.settings_donate_btn {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.settings_donate_btn .settings_donate_for_coffe,
+.settings_donate_btn .settings_donate_for_manicure {
+  background: rgba(170, 169, 173, 0.1);
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #111;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.settings_donate_btn a {
+  text-decoration: none;
+  color: #111827;
+}
+
+.settings_donate_for_coffe:hover {
+  background: #e0e0e0;
+}
+
+.settings_donate_for_coffe:active {
+  background: #e0e0e0;
 }
 
 /* Bottom navigation */
