@@ -352,6 +352,67 @@ function smoothHide(menu) {
   }, 500);
 }
 
+// TRENDS
+
+const tabs = document.querySelectorAll(".trends_tab");
+
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const isAll = tab.dataset.tag === "all";
+
+    if (isAll) {
+      // Убираем активность со всех кроме "All"
+      tabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+    } else {
+      const allTab = document.querySelector('.trends_tab[data-tag="all"]');
+      allTab.classList.remove("active");
+
+      // Переключаем активность текущего
+      tab.classList.toggle("active");
+    }
+
+    // Фильтрация новостей по тегам
+    filterNewsByTags(getActiveTags());
+  });
+});
+
+function getActiveTags() {
+  const activeTabs = document.querySelectorAll(".trends_tab.active");
+  return [...activeTabs].map((tab) => tab.dataset.tag);
+}
+
+function filterNewsByTags(tags) {
+  const articles = document.querySelectorAll("article");
+
+  articles.forEach((article) => {
+    const articleTags = article.dataset.tags?.split(",") || [];
+    const shouldShow =
+      tags.includes("all") || tags.some((tag) => articleTags.includes(tag));
+    article.style.display = shouldShow ? "block" : "none";
+  });
+
+  function getActiveTags() {
+    const activeTabs = document.querySelectorAll(".trends_tab.active");
+    return Array.from(activeTabs).map((tab) => tab.dataset.tag.toLowerCase());
+  }
+
+  function filterNewsByTags(tags) {
+    const articles = document.querySelectorAll(".trends_news_card");
+
+    articles.forEach((article) => {
+      const articleTags = article.dataset.tags
+        .toLowerCase()
+        .split(",")
+        .map((tag) => tag.trim());
+
+      const show =
+        tags.includes("all") || tags.some((tag) => articleTags.includes(tag));
+      article.style.display = show ? "block" : "none";
+    });
+  }
+}
+
 // Settings
 
 if (window.location.pathname.includes("settings.html")) {
