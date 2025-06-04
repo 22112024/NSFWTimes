@@ -318,7 +318,6 @@ body {
     brightness(98%) contrast(92%);
 }
 
-
 .share_menu {
   position: fixed;
   bottom: 0;
@@ -432,7 +431,6 @@ body {
 .share_menu_body {
   margin-top: 18px;
 }
-
 
 .copy_link {
   display: block;
@@ -549,7 +547,6 @@ body {
 .social_btn:active {
   background: #e0e0e0;
 }
-
 
 /* Bottom navigation */
 
