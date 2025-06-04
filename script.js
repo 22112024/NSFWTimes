@@ -224,32 +224,65 @@ document.addEventListener("DOMContentLoaded", () => {
       articleElement.setAttribute("data-id", article.id);
 
       articleElement.innerHTML = `
-        <div class="favorites_card_content">
-          <h2 class="favorites_card_title">
-            <a href="${article.url}">${article.title || "Без названия"}</a>
-          </h2>
-          <div class="favorites_card_category">
-            ${categoriesHTML}
-          </div>
-          <div class="favorites_card_description">
-            <h3><a href="${article.url}">${article.description || ""}</a></h3>
-          </div>
-          <div class="favorites_card_information">
-            <div class="favorites_card_media">
-              <div class="media_avatar"><img src="${
-                article.image || "img/default.jpg"
-              }" /></div>
-              <span class="media_source"><a href="#">${
-                article.source || ""
-              }</a> · ${article.time || ""}</span>
-            </div>
-            <div class="favorites_card_icon card_icon">
-              <span class="icon_share"><img src="img/share_icon.png" alt="Share" /></span>
-              <span class="icon_favorites selected"><img src="img/favorites_icon.png" alt="Favorites" /></span>
-            </div>
-          </div>
-        </div>
-      `;
+  <div class="favorites_card_content">
+    <h2 class="favorites_card_title">
+      <a class="resizable-text" href="${article.url}">${
+        article.title || "Без названия"
+      }</a>
+    </h2>
+    <div class="favorites_card_category">
+      ${categoriesHTML}
+    </div>
+    <div class="favorites_card_description">
+      <h3><a class="resizable-text" href="${article.url}">${
+        article.description || ""
+      }</a></h3>
+    </div>
+    <div class="favorites_card_information">
+      <div class="favorites_card_media">
+        <div class="media_avatar"><img src="${
+          article.image || "img/default.jpg"
+        }" /></div>
+        <span class="media_source"><a href="#">${article.source || ""}</a> · ${
+        article.time || ""
+      }</span>
+      </div>
+      <div class="favorites_card_icon card_icon">
+        <span class="icon_share"><img src="img/share_icon.png" alt="Share" /></span>
+        <span class="icon_favorites selected"><img src="img/favorites_icon.png" alt="Favorites" /></span>
+      </div>
+    </div>
+  </div>
+`;
+
+      // 🟡 Добавляем обработчик для кнопки "Поделиться"
+      const shareBtn = articleElement.querySelector(".icon_share");
+      if (shareBtn) {
+        shareBtn.addEventListener("click", (event) => {
+          event.stopPropagation();
+
+          const articleLink =
+            articleElement.querySelector(".favorites_card_title a")?.href ||
+            window.location.href;
+
+          const shareMenu = document.querySelector(".share_menu");
+          if (shareMenu) {
+            currentArticleUrl = articleLink;
+            shareMenu.classList.remove("hidden");
+            shareMenu.classList.add("block-visible");
+          }
+        });
+      }
+
+      // Применить размер шрифта к новым элементам
+      const savedFontSize = localStorage.getItem("fontSize");
+      if (savedFontSize) {
+        const resizableElements =
+          articleElement.querySelectorAll(".resizable-text");
+        resizableElements.forEach((el) => {
+          el.style.fontSize = `${savedFontSize}px`;
+        });
+      }
 
       container.appendChild(articleElement);
     });
@@ -291,16 +324,25 @@ if (shareMenu) {
   });
 
   let startY = 0;
-  shareMenu.addEventListener("touchstart", (event) => {
-    startY = event.touches[0].clientY;
-  });
-  shareMenu.addEventListener("touchend", (event) => {
-    const endY = event.changedTouches[0].clientY;
-    const deltaY = endY - startY;
-    if (deltaY > 40 && shareMenu.classList.contains("block-visible")) {
-      smoothHide(shareMenu);
-    }
-  });
+  shareMenu.addEventListener(
+    "touchstart",
+    (event) => {
+      startY = event.touches[0].clientY;
+    },
+    { passive: false }
+  );
+
+  shareMenu.addEventListener(
+    "touchend",
+    (event) => {
+      const endY = event.changedTouches[0].clientY;
+      const deltaY = endY - startY;
+      if (deltaY > 40 && shareMenu.classList.contains("block-visible")) {
+        smoothHide(shareMenu);
+      }
+    },
+    { passive: false }
+  );
 
   copyLinkBtn?.addEventListener("click", (event) => {
     event.preventDefault();
@@ -352,68 +394,97 @@ function smoothHide(menu) {
   }, 500);
 }
 
-// TRENDS
+// INDEX TABS
 
-const tabs = document.querySelectorAll(".trends_tab");
+const indexTabs = document.querySelectorAll(".index_tab");
 
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    const isAll = tab.dataset.tag === "all";
-
-    if (isAll) {
-      // Убираем активность со всех кроме "All"
-      tabs.forEach((t) => t.classList.remove("active"));
-      tab.classList.add("active");
-    } else {
-      const allTab = document.querySelector('.trends_tab[data-tag="all"]');
-      allTab.classList.remove("active");
-
-      // Переключаем активность текущего
-      tab.classList.toggle("active");
-    }
-
-    // Фильтрация новостей по тегам
-    filterNewsByTags(getActiveTags());
+if (indexTabs.length > 0) {
+  indexTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const isAllIndexTab = tab.dataset.tag === "all";
+      if (isAllIndexTab) {
+        indexTabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+      } else {
+        const allIndexTab = document.querySelector(
+          '.index_tab[data-tag="all"]'
+        );
+        if (allIndexTab) {
+          allIndexTab.classList.remove("active");
+        }
+        tab.classList.toggle("active");
+      }
+      filterIndexByTags(getActiveIndexTags());
+    });
   });
-});
-
-function getActiveTags() {
-  const activeTabs = document.querySelectorAll(".trends_tab.active");
-  return [...activeTabs].map((tab) => tab.dataset.tag);
 }
 
-function filterNewsByTags(tags) {
-  const articles = document.querySelectorAll("article");
+function getActiveIndexTags() {
+  const activeIndexTabs = document.querySelectorAll(".index_tab.active");
+  return Array.from(activeIndexTabs).map((tab) =>
+    tab.dataset.tag.toLowerCase()
+  );
+}
 
-  articles.forEach((article) => {
-    const articleTags = article.dataset.tags?.split(",") || [];
+// TRENDS TABS
+
+const trendsTabs = document.querySelectorAll(".trends_tab");
+
+if (trendsTabs.length > 0) {
+  trendsTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const isAllTrendsTab = tab.dataset.tag === "all";
+
+      if (isAllTrendsTab) {
+        // Деактивируем все табы
+        trendsTabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+      } else {
+        // Убираем активность с #All
+        const allTrendsTab = document.querySelector(
+          '.trends_tab[data-tag="all"]'
+        );
+        if (allTrendsTab) {
+          allTrendsTab.classList.remove("active");
+        }
+
+        // Переключаем активность текущего таба
+        tab.classList.toggle("active");
+      }
+
+      // Применяем фильтрацию
+      filterTrendsNewsByTags(getActiveTrendsTags());
+    });
+  });
+}
+
+// Возвращает активные теги (data-tag)
+function getActiveTrendsTags() {
+  const activeTrendsTabs = document.querySelectorAll(".trends_tab.active");
+  return Array.from(activeTrendsTabs).map((tab) =>
+    tab.dataset.tag.toLowerCase()
+  );
+}
+
+// Показывает/скрывает карточки в зависимости от активных тегов
+function filterTrendsNewsByTags(tags) {
+  const trendArticles = document.querySelectorAll(".trends_news_card");
+
+  trendArticles.forEach((article) => {
+    const articleTags =
+      article.dataset.tags
+        ?.toLowerCase()
+        .split(",")
+        .map((tag) => tag.trim()) || [];
+
     const shouldShow =
       tags.includes("all") || tags.some((tag) => articleTags.includes(tag));
+
     article.style.display = shouldShow ? "block" : "none";
   });
-
-  function getActiveTags() {
-    const activeTabs = document.querySelectorAll(".trends_tab.active");
-    return Array.from(activeTabs).map((tab) => tab.dataset.tag.toLowerCase());
-  }
-
-  function filterNewsByTags(tags) {
-    const articles = document.querySelectorAll(".trends_news_card");
-
-    articles.forEach((article) => {
-      const articleTags = article.dataset.tags
-        .toLowerCase()
-        .split(",")
-        .map((tag) => tag.trim());
-
-      const show =
-        tags.includes("all") || tags.some((tag) => articleTags.includes(tag));
-      article.style.display = show ? "block" : "none";
-    });
-  }
 }
 
-// Settings
+// SETTINGS
 
 if (window.location.pathname.includes("settings.html")) {
   const supportMenu = document.getElementById("supportMenu");
@@ -545,29 +616,36 @@ if (window.location.pathname.includes("settings.html")) {
     console.error(
       "Не найдены элементы copyContactSupport или copyContactPartnership"
     );
-
-    //Size text
-
-    handleCopyEmail(supportEmail, supportEmail.textContent);
-    handleCopyEmail(partnershipEmail, partnershipEmail.textContent);
-    handleCopyEmail(copyContactSupport, supportEmail.textContent);
-    handleCopyEmail(copyContactPartnership, partnershipEmail.textContent);
   }
 
+  // ШРИФТ: инициализация слайдера в настройках
   const slider = document.getElementById("fontSizeSlider");
-  const elementsToResize = document.querySelectorAll(".resizable-text");
+  const savedFontSize = localStorage.getItem("fontSize");
 
-  function updateFontSize(value) {
-    elementsToResize.forEach((el) => {
-      el.style.fontSize = `${value}px`;
+  if (slider) {
+    if (savedFontSize) {
+      slider.value = savedFontSize;
+    }
+
+    slider.addEventListener("input", () => {
+      const value = slider.value;
+      document.querySelectorAll(".resizable-text").forEach((el) => {
+        el.style.fontSize = `${value}px`;
+      });
+      localStorage.setItem("fontSize", value);
     });
   }
+}
 
-  updateFontSize(slider.value);
-
-  slider.addEventListener("input", () => {
-    updateFontSize(slider.value);
-  });
+// ШРИФТ: применить сохранённый размер на всех страницах
+const savedFontSize = localStorage.getItem("fontSize");
+if (savedFontSize) {
+  const elementsToResize = document.querySelectorAll(".resizable-text");
+  if (elementsToResize.length > 0) {
+    elementsToResize.forEach((el) => {
+      el.style.fontSize = `${savedFontSize}px`;
+    });
+  }
 }
 
 // ARROW BACK
