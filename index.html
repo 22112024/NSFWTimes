@@ -34,28 +34,27 @@
       </header>
 
       <!-- Filter Tabs -->
-      <div class="filter_tabs">
-        <a href="" class="tab active">All</a>
-        <a href="" class="tab">Funny</a>
-        <a href="" class="tab">Scandals</a>
-        <a href="" class="tab">OnlyFans</a>
-        <a href="" class="tab">Research</a>
+      <div class="index_filter_tabs">
+        <button class="index_tab active" data-tag="all">All</button>
+        <button class="index_tab" data-tag="news">News</button>
+        <button class="index_tab" data-tag="research">Research</button>
+        <button class="index_tab" data-tag="advice">Advice</button>
+        <button class="index_tab" data-tag="opinions">Opinions</button>
       </div>
 
       <!-- News Feed -->
-      <main class="new_feed">
+      <main class="news_feed">
         <!-- Main Card -->
-        <article class="new_card">
+        <article class="news_card" data-tags="news">
           <div class="card_content">
-            <h2 class="card_title">
+            <h2 class="card_title resizable-text">
               <a href="article.html">
                 В США учительница уволилась после того, как стало известно о ее
                 аккаунте на OnlyFans
               </a>
             </h2>
             <div class="card_category">
-              <span class="category">TRENDS</span>
-              <span class="category">ONLYFANS</span>
+              <span class="category">NEWS</span>
             </div>
             <div class="card_image">
               <a href="article.html"
@@ -64,7 +63,7 @@
             </div>
             <div class="card_description">
               <h3>
-                <a href="article.html">
+                <a href="article.html" class="resizable-text">
                   В Миссури школьную учительницу Брианну Коппейдж отстранили от
                   работы после того, как ее руководство узнало, что она ведет
                   аккаунт на OnlyFans — онлайн-платформе с интимным контентом. В
@@ -105,16 +104,15 @@
         </article>
 
         <!-- Secondary Card -->
-        <article class="new_card">
+        <article class="news_card" data-tags="research">
           <div class="card_content">
-            <h2 class="card_title">
+            <h2 class="card_title resizable-text">
               <a href="article.html">
                 «Во уста блуд творил»: как занимались сексом на Руси
               </a>
             </h2>
             <div class="card_category">
-              <span class="category">TRENDS</span>
-              <span class="category">ONLYFANS</span>
+              <span class="category">RESEARCH</span>
             </div>
             <div class="card_image">
               <a href="article.html"
@@ -123,7 +121,7 @@
             </div>
             <div class="card_description">
               <h3>
-                <a href="article.html">
+                <a href="article.html" class="resizable-text">
                   Принято считать, будто разнообразная сексуальная жизнь прошлых
                   тысячелетий была достоянием исключительно античного мира с его
                   фаллическими символами и культом запретной любви (всем, кто
