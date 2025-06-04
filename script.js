@@ -426,6 +426,24 @@ function getActiveIndexTags() {
   );
 }
 
+function filterIndexByTags(tags) {
+  const indexArticles = document.querySelectorAll(".news_card");
+
+  indexArticles.forEach((article) => {
+    const indexArticleTags =
+      article.dataset.tags
+        ?.toLowerCase()
+        .split(",")
+        .map((tag) => tag.trim()) || [];
+
+    const shouldShowIndexCards =
+      tags.includes("all") ||
+      tags.some((tag) => indexArticleTags.includes(tag));
+
+    article.style.display = shouldShowIndexCards ? "block" : "none";
+  });
+}
+
 // TRENDS TABS
 
 const trendsTabs = document.querySelectorAll(".trends_tab");
