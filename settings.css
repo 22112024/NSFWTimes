@@ -184,15 +184,15 @@ body {
 }
 
 .settings_section_partnership img {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   filter: brightness(0) saturate(100%) invert(7%) sepia(7%) saturate(2857%)
     hue-rotate(202deg) brightness(90%) contrast(90%);
 }
 
 .settings_section_text_size img {
-  width: 22px;
-  height: 22px;
+  width: 21px;
+  height: 21px;
   filter: brightness(0) saturate(100%) invert(7%) sepia(7%) saturate(2857%)
     hue-rotate(202deg) brightness(90%) contrast(90%);
 }
