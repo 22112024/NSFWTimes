@@ -121,7 +121,7 @@ body {
   flex-direction: column;
   gap: 10px;
   margin-left: 10px;
-  margin-right: 1px;
+  margin-right: 10px;
   padding-bottom: 90px;
 }
 
@@ -140,18 +140,28 @@ body {
 .settings_section_design {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 10px 20px;
   cursor: pointer;
+  transform: translateX(10%);
 }
 
-.settings_section_text_size,
+.settings_section_text_size {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  cursor: pointer;
+  transform: translateX(8%);
+}
+
 .settings_section_donate {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 10px 20px;
   cursor: pointer;
+  transform: translateX(10%);
 }
 
 .settings_section_inner .settings_section_title {
@@ -162,6 +172,33 @@ body {
   font-weight: 400;
   padding: 4px 8px;
   border-radius: 4px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.settings_section_support img {
+  width: 23px;
+  height: 23px;
+  filter: brightness(0) saturate(100%) invert(7%) sepia(7%) saturate(2857%)
+    hue-rotate(202deg) brightness(90%) contrast(90%);
+}
+
+.settings_section_partnership img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) saturate(100%) invert(7%) sepia(7%) saturate(2857%)
+    hue-rotate(202deg) brightness(90%) contrast(90%);
+}
+
+.settings_section_text_size img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) saturate(100%) invert(7%) sepia(7%) saturate(2857%)
+    hue-rotate(202deg) brightness(90%) contrast(90%);
+}
+
+.settings_section_inner .settings_section_title span {
+  font-size: 18px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -206,9 +243,15 @@ body {
 .text_size_control {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   padding: 10px;
+}
+
+.text_size_control_discription {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #fontSizeSlider {
@@ -300,8 +343,22 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
   margin-bottom: 15px;
+}
+
+.settings_donate_discription {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings_donate_discription img {
+  width: 21px;
+  height: 21px;
+  filter: brightness(0) saturate(100%) invert(7%) sepia(7%) saturate(2857%)
+    hue-rotate(202deg) brightness(90%) contrast(90%);
 }
 
 .settings_donate_btn {
@@ -310,14 +367,14 @@ body {
   gap: 10px;
 }
 
-.settings_donate_btn .settings_donate_for_coffe,
+.settings_donate_btn .settings_donate_for_cat,
 .settings_donate_btn .settings_donate_for_manicure {
   background: rgba(170, 169, 173, 0.1);
   padding: 6px 10px;
   border-radius: 8px;
   text-decoration: none;
   color: #111;
-  font-size: 16px;
+  font-size: 18px;
   transition: background 0.2s;
 }
 
@@ -326,14 +383,21 @@ body {
   color: #111827;
 }
 
-.settings_donate_for_coffe:hover {
+.settings_donate_for_cat:hover {
   background: #e0e0e0;
 }
 
-.settings_donate_for_coffe:active {
+.settings_donate_for_cat:active {
   background: #e0e0e0;
 }
 
+.settings_donate_for_manicure:hover {
+  background: #e0e0e0;
+}
+
+.settings_donate_for_manicure:active {
+  background: #e0e0e0;
+}
 
 /* Bottom navigation */
 
