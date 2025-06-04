@@ -177,8 +177,12 @@ article.visible {
   margin-top: 3px;
 }
 
+.header_icons .search_icon img:hover {
+  transform: scale(1.03) translateZ(1px);
+}
+
 /* Tabs */
-.filter_tabs {
+.index_filter_tabs {
   display: flex;
   overflow-x: auto;
   gap: 8px;
@@ -189,11 +193,11 @@ article.visible {
   -ms-overflow-style: none;
 }
 
-.filter_tabs::-webkit-scrollbar {
+.index_filter_tabs::-webkit-scrollbar {
   display: none;
 }
 
-.tab {
+.index_tab {
   padding: 5px 16px;
   border-radius: 30px;
   background: #fff;
@@ -205,17 +209,42 @@ article.visible {
   cursor: pointer;
 }
 
-.tab.active {
-  border: 1px solid #a1bef1;
-  color: #a1bef1;
-}
-
-.tab:hover {
+.index_tab:hover {
   transform: scale(1.03) translateZ(1px);
 }
 
+.index_tab.active[data-tag="all"] {
+  color: #a1bef1;
+  border-color: #a1bef1;
+  background: #fff;
+}
+
+.index_tab.active[data-tag="news"] {
+  color: #a1bef1;
+  border-color: #a1bef1;
+  background: #fff;
+}
+
+.index_tab.active[data-tag="research"] {
+  color: #a1bef1;
+  border-color: #a1bef1;
+  background: #fff;
+}
+
+.index_tab.active[data-tag="advice"] {
+  color: #a1bef1;
+  border-color: #a1bef1;
+  background: #fff;
+}
+
+.index_tab.active[data-tag="opinions"] {
+  color: #a1bef1;
+  border-color: #a1bef1;
+  background: #fff;
+}
+
 /* News Feed */
-.new_feed {
+.news_feed {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -225,7 +254,7 @@ article.visible {
 }
 
 /* News Card */
-.new_card {
+.news_card {
   background: #fff;
   backdrop-filter: blur(10px);
   border-radius: 16px;
