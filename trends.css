@@ -145,6 +145,10 @@ body {
   padding: 20px;
 }
 
+.trends_filter_tabs::-webkit-scrollbar {
+  display: none;
+}
+
 .trends_tab {
   padding: 7px 16px;
   border-radius: 30px;
@@ -156,6 +160,10 @@ body {
   color: rgb(203, 203, 205);
   background: #f9fafb;
   transition: all 0.3s ease;
+}
+
+.trends_tab:hover {
+  transform: scale(1.03) translateZ(1px);
 }
 
 .trends_tab.active[data-tag="all"] {
