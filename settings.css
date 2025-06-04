@@ -184,8 +184,8 @@ body {
 }
 
 .settings_section_partnership img {
-  width: 22px;
-  height: 22px;
+  width: 23px;
+  height: 23px;
   filter: brightness(0) saturate(100%) invert(7%) sepia(7%) saturate(2857%)
     hue-rotate(202deg) brightness(90%) contrast(90%);
 }
@@ -287,10 +287,6 @@ body {
   transition: background 0.3s ease;
 }
 
-#fontSizeSlider::-webkit-slider-thumb:hover {
-  background: #e06eb5;
-}
-
 /* ===== Firefox ===== */
 
 #fontSizeSlider::-moz-range-track {
@@ -309,10 +305,6 @@ body {
   transition: background 0.3s ease;
 }
 
-#fontSizeSlider::-moz-range-thumb:hover {
-  background: #e06eb5;
-}
-
 #fontSizeSlider::-ms-track {
   height: 6px;
   background: transparent;
@@ -322,11 +314,6 @@ body {
 
 #fontSizeSlider::-ms-fill-lower {
   background: #a1bef1;
-  border-radius: 5px;
-}
-
-#fontSizeSlider::-ms-fill-upper {
-  background: #e06eb5;
   border-radius: 5px;
 }
 
